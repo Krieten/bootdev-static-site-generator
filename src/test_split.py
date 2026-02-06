@@ -6,8 +6,7 @@ from split import (
     extract_markdown_links,
     split_nodes_image,
     split_nodes_link,
-    text_To_textnodes,
-    markdown_to_blocks)
+    text_to_textnodes)
 from textnode import TextNode, TextType
 
 class TestSplit(unittest.TestCase):
@@ -179,28 +178,8 @@ class TestSplit(unittest.TestCase):
                 TextNode("obi wan image", TextType.IMAGE, "https://i.imgur.com/fJRm4Vk.jpeg"),
                 TextNode(" and a ", TextType.PLAIN),
                 TextNode("link", TextType.LINK, "https://boot.dev"),
-            ],text_To_textnodes(input_text)
+            ],text_to_textnodes(input_text)
             )
-        
-    def test_markdown_to_blocks(self):
-        md = """
-This is **bolded** paragraph
-
-This is another paragraph with _italic_ text and `code` here
-This is the same paragraph on a new line
-
-- This is a list
-- with items
-"""
-        blocks = markdown_to_blocks(md)
-        self.assertEqual(
-            blocks,
-            [
-                "This is **bolded** paragraph",
-                "This is another paragraph with _italic_ text and `code` here\nThis is the same paragraph on a new line",
-                "- This is a list\n- with items",
-            ],
-        )
 
 if __name__ == "__main__":
     unittest.main()

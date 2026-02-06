@@ -85,7 +85,7 @@ def split_nodes_link(old_nodes):
             new_nodes.append(TextNode(original_text, TextType.PLAIN))
     return new_nodes
 
-def text_To_textnodes(text):
+def text_to_textnodes(text):
     nodes = [TextNode(text, TextType.PLAIN)]
     nodes = split_nodes_link(nodes)
     nodes = split_nodes_image(nodes)
@@ -94,13 +94,3 @@ def text_To_textnodes(text):
     nodes = split_nodes_delimiter(nodes, "*", TextType.ITALIC)
     nodes = split_nodes_delimiter(nodes, "`", TextType.CODE)
     return nodes
-
-def markdown_to_blocks(markdown):
-    blocks = []
-    stripped_blocks = []
-    blocks = markdown.split("\n\n")
-    for block in blocks:
-        clean_block = block.strip()
-        if clean_block != "":
-            stripped_blocks.append(clean_block)
-    return stripped_blocks
